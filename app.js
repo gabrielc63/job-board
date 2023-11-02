@@ -7,6 +7,7 @@ import { rateLimit } from "express-rate-limit";
 import { errorHandlerMiddleware } from "./src/middleware/errorHandler.js";
 import { notFoundMiddleware } from "./src/middleware/notFound.js";
 import "dotenv/config.js";
+import jobsRoutes from "./src/routes/v1/jobsRoutes.js";
 
 const limiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
@@ -21,6 +22,8 @@ app.use(helmet());
 app.use(cors());
 app.use(compression());
 app.use(morgan("dev"));
+
+app.use("/api/v1/", jobsRoutes);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
