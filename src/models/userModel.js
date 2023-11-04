@@ -4,6 +4,15 @@ const userModel = (sequelize) => {
   const User = sequelize.define(
     "User",
     {
+      username: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false,
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       firstName: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -27,6 +36,7 @@ const userModel = (sequelize) => {
   );
 
   User.associate = function(models) {
+    User.hasMany(models.RefreshToken, { onDelete: "cascade", hooks: true });
     User.hasMany(models.Contract, { as: "Client", foreignKey: "ClientId" });
     User.hasMany(models.Contract, {
       as: "Contractor",
