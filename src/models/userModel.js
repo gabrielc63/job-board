@@ -5,12 +5,12 @@ const userModel = (sequelize) => {
     "User",
     {
       username: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         unique: true,
         allowNull: false,
       },
       password: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       firstName: {

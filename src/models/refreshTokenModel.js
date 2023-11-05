@@ -4,6 +4,12 @@ const refreshTokenModel = (sequelize) => {
   const RefreshToken = sequelize.define(
     "RefreshToken",
     {
+      id: {
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
+        allowNull: false,
+        primaryKey: true,
+      },
       hashedToken: {
         type: Sequelize.STRING,
         allowNull: false,
